@@ -10,11 +10,27 @@
     let params = useParams();
 
     const getCuisine = async (name) => {
-        const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=5&cuisine=${name}`);
-        const recipes = await data.json();
-        console.log(recipes);
-        console.log(recipes.results);
-        setCuisine(recipes.results);
+
+        const check = localStorage.getItem(`${name}`);
+
+        if (check) {
+            // console.log(check);
+            console.log(JSON.parse(check));
+            setCuisine(JSON.parse(check));
+
+        } else {
+            const data = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&number=5&cuisine=${name}`);
+            
+            const recipes = await data.json();
+            
+            console.log(recipes);
+
+            console.log(recipes.results);
+
+            localStorage.setItem(`${name}`, JSON.stringify(recipes.results));
+
+            setCuisine(recipes.results);
+        }
     };
 
     useEffect(() => {
