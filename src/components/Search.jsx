@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { FaSearch, FaHome } from "react-icons/fa";
+import { Link, useNavigate } from "react-router-dom";
 
 function Search() {
   const [input, setInput] = useState("");
@@ -16,6 +16,10 @@ function Search() {
   }
 
   return (
+    <>
+
+    
+    
     <FormStyle onSubmit={submitHandler}>
       <form>
         <FaSearch></FaSearch>
@@ -27,9 +31,16 @@ function Search() {
           }}
           type="text"
           value={input}
-        />
+          />
       </form>
     </FormStyle>
+
+    {/* <Link to={"/"}>
+          <FaHome></FaHome>
+    </Link> */}
+    </>
+    
+
   );
 }
 
